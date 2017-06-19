@@ -1,361 +1,111 @@
-var data = [
-  { title: "Курица с овощами и сметаной",
-    ingredients: "Рис вареный – 100 гр|Курица сырая -  120 гр|Морковь – 50 гр|Кабачок – 50 гр|Перец красный – 50 гр|Сметана - 1 ч.л.|зелень|чеснок 1 зубчик",
-    description: '',
-    cooking: 'Потереть на крупной терке морковь, кабачок. Перец нарезать соломкой. Курицу мелко порезать. Сложить все в кастрюлю, налить немного воды, посолить, поперчить. Тушить 20 минут. За 5 минут до окончания варки добавить рис, чеснок, зелень и 1 чл. сметаны.',
-    type: 1,
-  },
-  { title: "Творог со свеклой и чесноком",
-    ingredients: "Творог – 200 гр|Свекла – 150 гр|Чеснок – 1 зубчик|Зелень",
-    description: 'Заранее отварить или запечь свеклу',
-    cooking: 'Свеклу мы заранее уже сварили (или запекли). Пока тушится обед, порезать свеклу на кусочки, смешать в блендере творог, свеклу, чеснок. Добавить зелень по вкусу. Посолить.',
-    type: 2
-  },
-  {
-    title: 'Гречка с грибами',
-    ingredients: 'Гречка вареная – 150 гр|Грибы сырые – 200 гр|Яйца – 2 штуки|Лук – 50 гр|Масло (если обед до 14 часов)',
-    description: '',
-    cooking: 'Достать из холодильника приготовленные ранее лук и грибы. Добавить к ним гречку, нарезанную зелень. Взбить яйца и залить ими гречку с грибами. Ставим в заранее разогретую до 200 гр духовку на 15 минут. Лучше ориентироваться по своей духовке. Если обед после 14, то лук и грибы нарезать, добавить к гречке и залить это яйцами.',
-    type: 1,
-  },
-  {
-    title: 'Мусс из курицы',
-    ingredients: 'Куриное филе сырое – 240 гр|Бульон от курицы – 100 мл|Зелень',
-    description: '',
-    cooking: 'Сварить куриную грудку, переложить в блендер, налить 100 мл бульона и взбивать на максимальной скорости 3-5 минут. В итоге должен получится нежный мусс. Добавить зелень, если любите, чеснок, специи для курицы.',
-    type: 2,
-  },
-  {
-    title: 'Рыба в молоке + Салат из свеклы и моркови',
-    ingredients: 'Рыба сырая (филе) – 240 гр|Молоко – 100 мл|Зелень, специи|Свекла – 75 гр|Морковь – 75 гр|Йогурт (сметана или майонез до 14-00) – 1 ст.л',
-    description: '',
-    cooking: 'Рыбу тщательно помыть, нарезать на небольшие куски.  Помыть и нарезать зелень.  Вскипятить молоко, добавить приправу, соль по вкусу.  Выложить рыбку в форму для выпекания и залить молоком, посыпать мелко нарезанной зеленью.  Отправить в заранее разогретую духовку.  Выпекать около 15 минут при температуре 200 градусов до готовности.\nНарезать мелкими кубиками заранее сваренные свеклу и морковь, посолить, заправить майонезом, сметаной (до 14-00) или йогуртом',
-    type: 1,
-  },
-  {
-    title: 'Сырники с яблоком',
-    ingredients: 'Творог (жирность до 4%) – 200 гр|Яблоки – 150 гр|Яйцо – 1 шт|Ванилин, корица по вкусу',
-    description: '',
-    cooking: 'Натереть на терке яблоки, смешать с творогом. Добавить по вкусу ванилин, корицу. Далее можно просто добавить белок яйца, можно его взбить в пену и аккуратно смешать с творогом и яблоком. Противень застелить пекарской бумагой и выложить на нее сырники. Хорошо, если есть силиконовые формочки – можно выложить творог в них и испечь маффины. Верх сырников смазать желтком. Запекаем из 15-20 минут.',
-    type: 2,
-  },
-  {
-    title: 'Запеканка из овощей с курицей',
-    ingredients: 'Курица – 120 гр|Цветная капуста – 50 гр|Зеленая фасоль – 50 гр|Сыр - 50 гр|Яйца – 2 шт|зелень, чеснок',
-    description: '',
-    cooking: 'Нарезать мелко курицу, измельчить не мелко ножом капусту и фасоль. Взбить 2 яйца. Нарезать зелень, измельчить чеснок. Натереть сыр. Все смешать. В силиконовую форму (можно в формочки для маффинов выложить смесь. Запекать 15-20 минут в заранее разогретой до 200 градусов духовке.',
-    type: 1,
-  },
-  {
-    title: 'Яблоки, фаршированные рисом',
-    ingredients: 'Яблоки – 200 гр (1 большое или 2 маленьких)|Рис вареный– 100 гр|ернослив – 4-6 шт.',
-    description: '',
-    cooking: 'С помощью ножа и чайной ложки вынуть из яблок сердцевину с мякотью. Мякоть и чернослив мелко нарезать. Смешать яблоко с черносливом и рисом, начинить смесью яблоки. В форму, до середины наполненную водой, выложить яблоки и поставить в духовку, можно вместе с маффинами. Запекать 10-15 минут.',
-    type: 2,
-  },
-]
+var R = require('ramda');
+var recipes = require('./recipes');
+var errors = require('./errors');
+var princips = require('./princips');
+var dinner = require('./dinner');
+var lunch = require('./lunch');
+var supper = require('./supper');
+var supper_variants = require('./supper_variants');
 
-var e = [  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  {
-    title: '',
-    ingredients: '',
-    description: '',
-    cooking: '',
-    type: 1,
-  },
-  // {
-  //   title: '',
-  //   ingredients: '',
-  //   description: '',
-  //   cooking: '',
-  //   type: 1,
-  // },
-]
+var filterLunch = R.filter(r=>r.type==1);
+var filterSupper = R.filter(r=>r.type==2);
+var recipesLunch = filterLunch(recipes);
+var recipesSupper = filterSupper(recipes);
 
-module.exports = data;
+function stat() {
+  var res = "*Рецепты для обеда*: "+recipesLunch.length+" шт.\n";
+  res += "*Рецепты для ужина*: "+recipesSupper.length+" шт.\n";
+  res += "*Всего*: "+recipes.length+" шт.\n";
+  return res;
+}
+
+function newKeyboardButton(text, request_contact, request_location) {
+  var button = {
+    'text': text
+  }
+
+  if (request_contact) {
+    button.request_contact = request_contact
+  }
+
+  if (request_location) {
+    button.request_location = request_location
+  }
+
+  return button
+}
+
+
+var keyboard = {
+  'keyboard': [
+    [ newKeyboardButton('Рецепт обеда') ],
+    [ newKeyboardButton('Рецепт ужина') ],
+    [ newKeyboardButton('О системе') ],
+  ],
+  'resize_keyboard': true,
+}
+
+var keyboardAbout = {
+  'keyboard': [
+    [ newKeyboardButton('Советы') ],
+    [ newKeyboardButton('Что можно на завтрак') ],
+    [ newKeyboardButton('Что можно на обед') ],
+    [ newKeyboardButton('Что можно на ужин') ],
+    [ newKeyboardButton('Распространенные ошибки') ],
+    [ newKeyboardButton('Вернуться в главное меню') ],
+  ],
+  'resize_keyboard': true,
+}
+
+var keyboardSupper = {
+  'keyboard': [
+    [ newKeyboardButton('Вариант № 1 Фрукты и молочка') ],
+    [ newKeyboardButton('Вариант № 2 Фрукты и овощи') ],
+    [ newKeyboardButton('Вариант № 3 Фрукты и крупы') ],
+    [ newKeyboardButton('Вариант № 4 Овощи и молочка') ],
+    [ newKeyboardButton('Вариант № 5 Овощи и крупы') ],
+    [ newKeyboardButton('Вариант № 6 Мясные и рыбные продукты') ],
+    [ newKeyboardButton('Вариант № 7 Молочка, сыр и криспы') ],
+    [ newKeyboardButton('Вернуться в главное меню') ],
+  ],
+  'resize_keyboard': true,
+}
+
+
+
+var mainInfo = [[
+   'У меня есть рецепты для питания по *системе минус 60*',
+   'Нажми *Рецепт обеда* для случайного рецепта обеда',
+   '*Рецепт ужина* для случайного рецепта ужина',
+]]
+
+var reply = {
+  // Варианты ужина
+  'Вариант № 1 Фрукты и молочка': { i: supper_variants[0], k: keyboardSupper},
+  'Вариант № 2 Фрукты и овощи': { i: supper_variants[1], k: keyboardSupper},
+  'Вариант № 3 Фрукты и крупы': { i: supper_variants[2], k: keyboardSupper},
+  'Вариант № 4 Овощи и молочка': { i: supper_variants[3], k: keyboardSupper},
+  'Вариант № 5 Овощи и крупы': { i: supper_variants[4], k: keyboardSupper},
+  'Вариант № 6 Мясные и рыбные продукты': { i: supper_variants[5], k: keyboardSupper},
+  'Вариант № 7 Молочка, сыр и криспы': { i: supper_variants[6], k: keyboardSupper},
+  // Случайный рецепт
+  'Рецепт обеда': { i: function () {
+      return recipesLunch[Math.floor(Math.random() * recipesLunch.length)]
+  }, k: keyboard},
+  'Рецепт ужина': { i: function() {
+    return recipesSupper[Math.floor(Math.random() * recipesSupper.length)];
+  }, k: keyboard},
+  // Общая информация
+  'О системе': { i: [[
+    'Диета (система) "Минус 60" была разработана автором бестселлеров о похудении Екатериной Миримановой. Она испробовала её на себе, похудев при этом со 120 кг до 60-ти всего за полтора года, не прибегая к хирургическим методам. Основное преимущество и отличие системы "Минус 60" от большинства других – отказываться от любимой еды нет необходимости, а запрещенных продуктов нет.'
+  ]], k: keyboardAbout},
+  'Советы': { i: princips, k: keyboardAbout},
+  'Что можно на завтрак': { i: dinner, k: keyboardAbout},
+  'Что можно на обед': { i: lunch, k: keyboardAbout},
+  'Что можно на ужин': { i: supper, k: keyboardSupper},
+  'Распространенные ошибки': { i: errors, k: keyboardAbout},
+  'Вернуться в главное меню': { i: mainInfo, k: keyboard},
+  '/start': { i: mainInfo, k: keyboard},
+}
+
+module.exports = {reply, keyboard};

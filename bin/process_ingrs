@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xsel | tr -s '\n' '|' | xsel -b -i
+
