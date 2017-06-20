@@ -5,6 +5,7 @@ var princips = require('./princips');
 var dinner = require('./dinner');
 var lunch = require('./lunch');
 var supper = require('./supper');
+var laziness = require('./laziness');
 var supper_variants = require('./supper_variants');
 
 var filterLunch = R.filter(r=>r.type==1);
@@ -47,11 +48,12 @@ var keyboard = {
 
 var keyboardAbout = {
   'keyboard': [
-    [ newKeyboardButton('Советы') ],
     [ newKeyboardButton('Что можно на завтрак') ],
     [ newKeyboardButton('Что можно на обед') ],
     [ newKeyboardButton('Что можно на ужин') ],
+    [ newKeyboardButton('Советы') ],
     [ newKeyboardButton('Распространенные ошибки') ],
+    [ newKeyboardButton('Причины лени') ],
     [ newKeyboardButton('Вернуться в главное меню') ],
   ],
   'resize_keyboard': true,
@@ -75,6 +77,8 @@ var keyboardSupper = {
 
 var mainInfo = [[
    'У меня есть рецепты для питания по *системе минус 60*',
+   '',
+   stat(),
    'Нажми *Рецепт обеда* для случайного рецепта обеда',
    '*Рецепт ужина* для случайного рецепта ужина',
 ]]
@@ -100,6 +104,7 @@ var reply = {
     'Диета (система) "Минус 60" была разработана автором бестселлеров о похудении Екатериной Миримановой. Она испробовала её на себе, похудев при этом со 120 кг до 60-ти всего за полтора года, не прибегая к хирургическим методам. Основное преимущество и отличие системы "Минус 60" от большинства других – отказываться от любимой еды нет необходимости, а запрещенных продуктов нет.'
   ]], k: keyboardAbout},
   'Советы': { i: princips, k: keyboardAbout},
+  'Причины лени': { i: laziness, k: keyboardAbout},
   'Что можно на завтрак': { i: dinner, k: keyboardAbout},
   'Что можно на обед': { i: lunch, k: keyboardAbout},
   'Что можно на ужин': { i: supper, k: keyboardSupper},
